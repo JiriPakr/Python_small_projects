@@ -17,7 +17,7 @@ class LinkedList():
         while node is not None:
             nodes.append(node.data)
             node = node.next
-        nodes.append("None")
+        nodes.append(" ")
         return " -> ".join(nodes)
 
     def read(self,index):
@@ -80,7 +80,8 @@ class LinkedList():
             next_node = current_node.next
             current_node.next = next_node.next
 
-    def add_first(self, added_value):
+    # add first
+    def push(self, added_value):
         new_node = Node(added_value)
         new_node.next = self.head
         self.head = new_node
@@ -91,6 +92,25 @@ class LinkedList():
         while current_node.next is not None:
             current_node = current_node.next
         current_node.next = new_node
+
+    def reverse(self):
+        prev_node = None
+        current_node = self.head
+        
+        while current_node is not None:
+            next_node = current_node.next
+            current_node.next = prev_node
+            prev_node = current_node
+            current_node = next_node
+        self.head = prev_node
+
+    def printList(self):
+        temp = self.head
+        while(temp):
+            print(temp.data, end=" -> ")
+            temp = temp.next
+        print(end="\n")
+ 
 ##         
 
 class Stack():
@@ -146,8 +166,24 @@ linked_list.insert_at_index(3,'d')
 print(linked_list)
 linked_list.delete_at_index(1)
 print(linked_list)
-linked_list.add_first("1")
-print(linked_list)
+linked_list.push("1")
+print(linked_list, "\n")
 linked_list.insert_at_index(4,'e')
 linked_list.add_last("5")
-print(linked_list)
+print("Linked list1:")
+linked_list.printList()
+linked_list.reverse()
+print("Linked list1 reversed:")
+linked_list.printList()
+
+
+list2 = LinkedList()
+list2.push("1")
+list2.push("2")
+list2.push("3")
+list2.push("4")
+print("Linked list2:")
+list2.printList()
+list2.reverse()
+print("Linked list2 reversed:")
+list2.printList()
