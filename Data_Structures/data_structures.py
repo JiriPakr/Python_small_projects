@@ -113,10 +113,59 @@ class LinkedList():
  
 ##         
 
-class Stack():
-    # LIFO
-    pass
 
+class Stack():
+    # like linked list
+    def __init__(self):
+        self.head = Node("head")
+        self.size = 0
+        
+    def __str__(self):
+        cur = self.head.next
+        out = ""
+        while cur:
+            out = str(cur.data) + "->"
+            cur = cur.next
+        return out[:-2]
+    
+    def getsize(self):
+        return self.size
+
+    def isEmpty(self):
+        return self.size == 0
+
+    def push(self, data):
+        node = Node(data)
+        node.next = self.head.next
+        self.head.next = node
+        self.size += 1
+
+    def pop(self):
+        if self.isEmpty():
+            raise Exception("Stack is empty")
+        poped = self.head.next
+        self.head.next = self.head.next.next
+        self.size -= 1
+        return poped.data
+    
+class Stack2():
+    
+    def __init__(self):
+        self.stack = []
+
+    def push(self, data):
+           if data not in self.stack:
+                self.stack.append(data)
+                return True     
+
+    def top(self):
+        return self.stack[-1]
+    
+    def pop(self):
+        if len(self.stack) <= 0:
+            return ("Stack empty")
+        else:
+            return self.stack.pop()
 ##
 
 class Queue():
@@ -152,38 +201,58 @@ class Graph():
 
 #----------------------------------------------------------------------------------
 
-linked_list = LinkedList()
-print(linked_list)
-first_node = Node("a")
-second_node = Node("b")
-linked_list.head = first_node
-first_node.next = second_node
-print(linked_list)
-print(linked_list.read(1))
-print(linked_list.index_of("b"))
-linked_list.insert_at_index(2,'c')
-linked_list.insert_at_index(3,'d')
-print(linked_list)
-linked_list.delete_at_index(1)
-print(linked_list)
-linked_list.push("1")
-print(linked_list, "\n")
-linked_list.insert_at_index(4,'e')
-linked_list.add_last("5")
-print("Linked list1:")
-linked_list.printList()
-linked_list.reverse()
-print("Linked list1 reversed:")
-linked_list.printList()
+# linked_list = LinkedList()
+# print(linked_list)
+# first_node = Node("a")
+# second_node = Node("b")
+# linked_list.head = first_node
+# first_node.next = second_node
+# print(linked_list)
+# print(linked_list.read(1))
+# print(linked_list.index_of("b"))
+# linked_list.insert_at_index(2,'c')
+# linked_list.insert_at_index(3,'d')
+# print(linked_list)
+# linked_list.delete_at_index(1)
+# print(linked_list)
+# linked_list.push("1")
+# print(linked_list, "\n")
+# linked_list.insert_at_index(4,'e')
+# linked_list.add_last("5")
+# print("Linked list1:")
+# linked_list.printList()
+# linked_list.reverse()
+# print("Linked list1 reversed:")
+# linked_list.printList()
 
 
-list2 = LinkedList()
-list2.push("1")
-list2.push("2")
-list2.push("3")
-list2.push("4")
-print("Linked list2:")
-list2.printList()
-list2.reverse()
-print("Linked list2 reversed:")
-list2.printList()
+# list2 = LinkedList()
+# list2.push("1")
+# list2.push("2")
+# list2.push("3")
+# list2.push("4")
+# print("Linked list2:")
+# list2.printList()
+# list2.reverse()
+# print("Linked list2 reversed:")
+# list2.printList()
+
+# stack = Stack()
+# for i in range(1, 11):
+#     stack.push(i)
+# print(f"Stack: {stack}")
+
+# for _ in range(1, 6):
+#     remove = stack.pop()
+#     print(f"Pop: {remove}")
+# print(f"Stack: {stack}")
+
+stack2 = Stack2()
+stack2.push(1)
+stack2.push(2)
+stack2.push(3)
+print(stack2.top())
+print(stack2.pop())
+print(stack2.pop())
+print(stack2.pop())
+print(stack2.pop())
