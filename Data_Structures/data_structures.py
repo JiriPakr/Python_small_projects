@@ -123,7 +123,7 @@ class Stack():
     def __str__(self):
         cur = self.head.next
         out = ""
-        while cur:
+        while cur is not None:
             out = str(cur.data) + "->"
             cur = cur.next
         return out[:-2]
@@ -148,6 +148,13 @@ class Stack():
         self.size -= 1
         return poped.data
     
+    def printList(self):
+        temp = self.head
+        while(temp):
+            print(temp.data, end=" -> ")
+            temp = temp.next
+        print(end="\n")    
+    
 class Stack2():
     
     def __init__(self):
@@ -166,13 +173,57 @@ class Stack2():
             return ("Stack empty")
         else:
             return self.stack.pop()
+        
+
 ##
 
 class Queue():
     # FIFO
+    def __init__(self):
+        self.head = Node("head")
+        self.size = 0
     pass
 
-##
+    def __str__(self):
+        cur = self.head.next
+        out = ""
+        while cur:
+            out = str(cur.data) + "->"
+            cur = cur.next
+        return out[:]
+    
+    def getsize(self):
+        return self.size
+
+    def isEmpty(self):
+        return self.size == 0
+
+    def dequeue(self):
+        if self.isEmpty():
+            raise Exception("Queue is empty")
+        tempsize = self.size
+        cur = self.head
+        while tempsize > 1:
+            cur = cur.next
+            tempsize -= 1
+        dequeued = cur.next
+        cur.next = None
+        self.size -= 1
+        return dequeued.data
+    
+    def add(self,data):
+        node = Node(data)
+        node.next = self.head.next
+        self.head.next = node
+        self.size += 1
+
+    def printList(self):
+        temp = self.head
+        while(temp):
+            print(temp.data, end=" -> ")
+            temp = temp.next
+        print(end="\n")    
+    ##
 
 class HashTable():
     # 
@@ -237,22 +288,24 @@ class Graph():
 # print("Linked list2 reversed:")
 # list2.printList()
 
-# stack = Stack()
-# for i in range(1, 11):
-#     stack.push(i)
-# print(f"Stack: {stack}")
+stack = Stack()
+stack.push(1)
+stack.push(2)
+stack.push(3)
+stack.printList()
+print(stack.pop())
+stack.printList()
+stack.pop()
+stack.printList()
 
-# for _ in range(1, 6):
-#     remove = stack.pop()
-#     print(f"Pop: {remove}")
-# print(f"Stack: {stack}")
-
-stack2 = Stack2()
-stack2.push(1)
-stack2.push(2)
-stack2.push(3)
-print(stack2.top())
-print(stack2.pop())
-print(stack2.pop())
-print(stack2.pop())
-print(stack2.pop())
+Q = Queue()
+Q.add(1)
+Q.add(2)
+Q.add(3)
+Q.printList()
+print(Q.dequeue())
+Q.printList()
+print(Q.dequeue())
+Q.printList()
+print(Q.dequeue())
+Q.printList()
