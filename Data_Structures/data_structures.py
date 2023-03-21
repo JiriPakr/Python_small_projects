@@ -154,7 +154,8 @@ class Stack():
             print(temp.data, end=" -> ")
             temp = temp.next
         print(end="\n")    
-    
+##    
+
 class Stack2():
     
     def __init__(self):
@@ -178,7 +179,7 @@ class Stack2():
 ##
 
 class Queue():
-    # FIFO
+    # implemented like linked list
     def __init__(self):
         self.head = Node("head")
         self.size = 0
@@ -223,16 +224,67 @@ class Queue():
             print(temp.data, end=" -> ")
             temp = temp.next
         print(end="\n")    
-    ##
-
-class HashTable():
-    # 
-    pass
-
 ##
 
-class Tree():
-    # 
+class Queue2():
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        return self.items == []
+
+    def enqueue(self, item):
+        self.items.insert(0, item)
+
+    def dequeue(self):
+        return self.items.pop()
+
+    def print(self):
+        print(self.items)
+##
+
+class HashTable():
+    def __init__(self):
+        self.MAX = 127
+        self.table = [None for i in range(self.MAX)]
+
+    # Hash Fuction
+    def Hash_func(self, key):
+        h = 0
+        for char in key:
+            h += ord(char)
+        return h % self.MAX
+    
+    def __setitem__(self, key, value):
+        hash = self.Hash_func(key)
+        if self.table[hash] is None:
+            self.table[hash] = value
+
+    def __getitem__(self, key):
+        hash = self.Hash_func(key)
+        return self.table[hash]
+        
+    def __delitem__(self, key):
+        hash = self.Hash_func(key)
+        if self.table[hash] is None:
+            print("No element found with key:", key)
+        else:
+            print("Deleted element with key:", key)
+            self.table[hash] = None
+##
+
+
+# BinaryTree
+class NodeBT():
+    def __init__(self, data):
+        self.data = data
+        self.right = None
+        self.left = None
+
+def search(root, data):
+    pass
+
+def insert(root, node):
     pass
 
 ##
@@ -288,24 +340,53 @@ class Graph():
 # print("Linked list2 reversed:")
 # list2.printList()
 
-stack = Stack()
-stack.push(1)
-stack.push(2)
-stack.push(3)
-stack.printList()
-print(stack.pop())
-stack.printList()
-stack.pop()
-stack.printList()
+# stack = Stack()
+# stack.push(1)
+# stack.push(2)
+# stack.push(3)
+# stack.printList()
+# print(stack.pop())
+# stack.printList()
+# stack.pop()
+# stack.printList()
 
-Q = Queue()
-Q.add(1)
-Q.add(2)
-Q.add(3)
-Q.printList()
-print(Q.dequeue())
-Q.printList()
-print(Q.dequeue())
-Q.printList()
-print(Q.dequeue())
-Q.printList()
+# Q = Queue()
+# Q.add(1)
+# Q.add(2)
+# Q.add(3)
+# Q.printList()
+# print(Q.dequeue())
+# Q.printList()
+# print(Q.dequeue())
+# Q.printList()
+# print(Q.dequeue())
+# Q.printList()
+
+# ht = HashTable()
+# ht['a'] = 1
+# ht['b'] = 2
+# del ht['a']
+# print(ht.table)
+# print(ht['a'])
+# print(ht['b'])
+
+# q = Queue2()
+# q.enqueue(1)
+# q.enqueue(2)
+# q.enqueue(3)
+# q.enqueue(1)
+# q.enqueue(1)
+# q.print()
+# q.dequeue()
+# q.dequeue()
+# q.print()
+
+root = NodeBT(1)
+root.left = NodeBT(2)
+root.right = NodeBT(3)
+root.left.left = NodeBT(4)
+root.left.right = NodeBT(5)
+root.right.left = NodeBT(6)
+root.right.right = NodeBT(7)
+
+print(root.left.left.data)
