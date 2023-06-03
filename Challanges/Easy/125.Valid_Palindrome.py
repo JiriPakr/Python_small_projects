@@ -43,8 +43,6 @@ def isPalindrome1(s: str) -> bool:
 
     i,j = 0, len(s)-1
     while j>=0:
-        print(s[j])
-        print(s[i])
         if s[i] != s[j]:
             return False
         else:
@@ -54,7 +52,25 @@ def isPalindrome1(s: str) -> bool:
 
 
 #######################################################
-#result1 = isPalindrome1("A man, a plan, a canal: Panama")
-result2 = isPalindrome1("0P")
-#print(result1)
+def isPalindrome2(s: str) -> bool:
+    newstr = ""
+    for c in s:
+        if c.isalnum():
+            newstr += c.lower()
+
+    i,j = 0, len(newstr)-1
+    while j>=0:
+        if newstr[i] != newstr[j]:
+            return False
+        else:
+            i += 1
+            j -= 1
+    return True
+
+
+#######################################################
+
+result1 = isPalindrome2("A man, a plan, a canal: Panama")   # True
+result2 = isPalindrome2("0P")   # False
+print(result1)
 print(result2)
