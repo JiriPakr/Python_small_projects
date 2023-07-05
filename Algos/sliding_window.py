@@ -88,7 +88,6 @@ def lengthOfLongestSubstring(s: str) -> int:
             return 0
 
         for windowEnd in range(len(s)):
-            print(hashSet)
             hashSet[s[windowEnd]] = 1 + hashSet.get(s[windowEnd],0)
 
             while hashSet[s[windowEnd]] > 1:  
