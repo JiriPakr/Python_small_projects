@@ -45,3 +45,27 @@ def maxDepth(self, root):
     right += 1
 
   return max(left, right)
+
+#################################################################
+def maxDepth(root) -> int:
+  res = 0
+
+  def dfs(root):
+
+    if not root:
+      return 0
+
+    left, right = 0,0
+    if root.left:
+      left = dfs(root.left) + 1
+    else:
+      left += 1
+
+    if root.right:
+      right = dfs(root.right) + 1
+    else:
+      right += 1
+
+    return max(left,right)
+  res = dfs(root)
+  return res
