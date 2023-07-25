@@ -47,3 +47,14 @@ def isSameTree(p, q) -> bool:
     return p.val == q.val and isSameTree(p.right, q.right) and isSameTree(p.left, q.left)
 
 #################################################################
+
+def isSameTree(p, q) -> bool:
+
+    if not p and not q:
+        return True
+
+    if not p or not q or p.val != q.val:
+        return False
+
+    return (isSameTree(p.left, q.left) and
+    isSameTree(p.right, q.right))
