@@ -41,7 +41,7 @@ class Solution:
         
         rows, cols = len(grid), len(grid[0])
         visited = set()
-        island = 0
+        islands = 0
 
         def bfs(r,c):
             q = collections.deque()
@@ -56,7 +56,7 @@ class Solution:
                     r, c = row + dr, col + dc
                     if (r in range(rows) and
                         c in range(cols) and 
-                       grid[r, c] == "1" and
+                       grid[r][c] == "1" and
                        (r, c) not in visited):
                         q.append((r, c))
                         visited.add((r, c))
@@ -66,3 +66,4 @@ class Solution:
                 if grid[r][c] == "1" and (r,c) not in visited:
                     bfs(r, c)
                     islands += 1
+        return islands
