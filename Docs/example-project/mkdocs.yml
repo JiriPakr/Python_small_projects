@@ -1,0 +1,8 @@
+site_name: SomeDocs
+
+nav:
+  - Home: 'index.md'
+  - About: 'about.md'
+  - 'User guide':
+    - 'Writing docs': 'writing.md'
+    - 'Styling docs': 'styling.md'
